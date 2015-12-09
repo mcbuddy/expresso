@@ -8,9 +8,16 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET expresso page*/
-router.get('/expresso', function(req, res, text) {
-    res.render('expresso', { title: 'Expresso Page'})
+router.get('/user_lists', function(req, res, text) {
+    var db = req.db;
+    var col = db.get('usercollection')
+    col.find({},{},function(e, docs) {
+        res.render('user_lists', { 'user': docs})
+    });
+
 });
+
+
 
 
 module.exports = router;
